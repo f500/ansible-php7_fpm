@@ -13,12 +13,14 @@ php_fpm_log_level: error
 # php_fpm_process_priority: -19
 # php_fpm_rlimit_core: 0
 # php_fpm_rlimit_files: 1024
-php_fpm_run_dir: "/var/run"
+php_fpm_run_dir: "/var/run/php"
 # php_fpm_syslog_facility: "daemon"
 # php_fpm_syslog_ident: "php5-fpm"
 # php_fpm_systemd_interval: 10
 php_fpm_user: "www-data"
-
+php_fpm_socket_filename: "php7.0-fpm.sock"
+php_fpm_listen: "/var/run/php/php7.0-fpm.sock"
+php_fpm_listen_allowed_clients: "127.0.0.1"
 
 # FPM POOLS
 
@@ -28,12 +30,12 @@ php_fpm_pools:
       # prefix: "/path/to/pools/$pool"
       user: "{{ php_fpm_user }}"
       group: "{{ php_fpm_group }}"
-      listen: "{{ php_fpm_run_dir }}/php7.0-fpm.sock"
+      listen: "{{ php_fpm_listen }}"
+      listen_allowed_clients: "{{ php_fpm_listen_allowed_clients }}"
       # listen_backlog: 65535
       listen_owner: "{{ php_fpm_user }}"
       listen_group: "{{ php_fpm_group }}"
       listen_mode: "0600"
-      # listen_allowed_clients: "127.0.0.1"
       pm: "dynamic"
       pm_max_children: 5
       pm_start_servers: 2
