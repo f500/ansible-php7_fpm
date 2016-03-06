@@ -28,6 +28,15 @@ Example Playbook
       roles:
          - { role: f500.php7_fpm, php_fpm_error_reporting: "E_ALL" }
 
+      OR, if you prefer TCP over Unix socket:
+
+        - { 
+            role: f500.php7_fpm, 
+                php_fpm_error_reporting: "E_ALL",
+                php_fpm_listen: "127.0.0.1:9100",
+                php_fpm_listen_allowed_clients: "127.0.0.1, 127.0.1.1",
+        }
+
 License
 -------
 

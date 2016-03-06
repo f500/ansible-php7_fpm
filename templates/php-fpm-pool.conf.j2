@@ -9,6 +9,10 @@ group = {{ item.settings.group }}
 
 listen = {{ item.settings.listen }}
 
+{% if item.settings.listen_allowed_clients is defined %}
+listen.allowed_clients = {{ item.settings.listen_allowed_clients }}
+{% endif %}
+
 {% if item.settings.listen_backlog is defined %}
 listen.backlog = {{ item.settings.listen_backlog }}
 {% endif %}
